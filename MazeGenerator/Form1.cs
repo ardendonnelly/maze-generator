@@ -1,0 +1,87 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace MazeGenerator
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Maze maze = new Maze(10, 10); // width and height
+
+            //Generation.BinaryTree(maze);
+            Generation.IterativeBacktracking(maze);
+
+            maze.Start = maze.GetCell(0, 0);
+            maze.End = maze.GetCell(maze.Rows - 1, maze.Cols - 1);
+
+            pictureBox2.Image = DrawMaze(maze, 40); // cell size is 40 for 10x10, 20 for 20x20
+        }
+
+        public Bitmap DrawMaze(Maze maze, int cellSize)
+        {
+            int width = maze.Cols * cellSize + 1;
+            int height = maze.Rows * cellSize + 1;
+
+            Bitmap bmp = new Bitmap(width, height);
+
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.Clear(Color.White);
+                Pen wallPen = Pens.Black;
+                Font font = new Font("Arial", 8);
+                StringFormat format = new StringFormat
+                {
+                    Alignment = StringAlignment.Center,
+                    LineAlignment = StringAlignment.Center
+                };
+
+                for (int row = 0; row < maze.Rows; row++)
+                {
+                    for (int col = 0; col < maze.Cols; col++)
+                    {
+                        MazeCell cell = maze.GetCell(row, col);
+                        int x = col * cellSize;
+                        int y = row * cellSize;
+
+                        // Start and end
+                        if (cell == maze.Start)
+                            g.FillRectangle(Brushes.LimeGreen, x + cellSize / 8, y + cellSize / 8, cellSize - cellSize / 4, cellSize - cellSize / 4);
+
+                        else if (cell == maze.End)
+                            g.FillRectangle(Brushes.Red, x + cellSize / 8, y + cellSize / 8, cellSize - cellSize / 4, cellSize - cellSize / 4);
+
+
+                        // Draw top wall
+                        if (cell.Up == null || !cell.isLinked(cell.Up)) // checking if cell is outside maze or a wall
+                            g.DrawLine(wallPen, x, y, x + cellSize, y); // top left is (x,y), top right is (x+cellSize, y)
+
+                        // Draw left wall
+                        if (cell.Left == null || !cell.isLinked(cell.Left))
+                            g.DrawLine(wallPen, x, y, x, y + cellSize);
+
+                        // Draw right wall
+                        if (cell.Right == null || !cell.isLinked(cell.Right))
+                            g.DrawLine(wallPen, x + cellSize, y, x + cellSize, y + cellSize);
+
+                        // Draw bottom wall
+                        if (cell.Down == null || !cell.isLinked(cell.Down))
+                            g.DrawLine(wallPen, x, y + cellSize, x + cellSize, y + cellSize);
+                    }
+                }
+            }
+            return bmp;
+        }
+    }
+}
