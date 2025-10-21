@@ -23,6 +23,8 @@ namespace MazeGenerator
             //Generation.BinaryTree(maze);
             Generation.IterativeBacktracking(maze);
 
+
+
             maze.Start = maze.GetCell(0, 0);
             maze.End = maze.GetCell(maze.Rows - 1, maze.Cols - 1);
 
@@ -35,6 +37,13 @@ namespace MazeGenerator
             int height = maze.Rows * cellSize + 1;
 
             Bitmap bmp = new Bitmap(width, height);
+
+
+
+            List<MazeCell> path = new List<MazeCell>();
+            path = Solver.DepthFirstSearch(maze);
+
+
 
             using (Graphics g = Graphics.FromImage(bmp))
             {
@@ -78,6 +87,10 @@ namespace MazeGenerator
                         // Draw bottom wall
                         if (cell.Down == null || !cell.isLinked(cell.Down))
                             g.DrawLine(wallPen, x, y + cellSize, x + cellSize, y + cellSize);
+
+                        // Draw Path
+                        if (path.Contains(cell))
+                            g.FillRectangle(Brushes.Blue, x + cellSize / 4, y + cellSize / 4, cellSize / 2, cellSize / 2);
                     }
                 }
             }
