@@ -3,11 +3,11 @@
 A simple maze generation program using various maze generating algorithms
 
 Currently Includes:
-- Binary Tree
-- Recursive Backtracker
+- Binary Tree Generation
+- Recursive Backtracker Generation
 
 Planned Features:
-- Randomized Prim's
+- Randomized Prim's Generation
 - Depth First Search Solving Algorithm
 - Algorithm Dropdown Menu
 
