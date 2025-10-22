@@ -2,7 +2,7 @@
 
 A simple maze generation program using various maze generating algorithms
 
-Currently Includes
+Currently Includes:
 - Binary Tree
 - Recursive Backtracker
 
