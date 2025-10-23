@@ -49,6 +49,7 @@ namespace MazeGenerator
             {
                 g.Clear(Color.White);
                 Pen wallPen = Pens.Black;
+
                 Font font = new Font("Arial", 8);
                 StringFormat format = new StringFormat
                 {
@@ -64,7 +65,11 @@ namespace MazeGenerator
                         int x = col * cellSize;
                         int y = row * cellSize;
 
-                        // Start and end
+                        // Draw solution path
+                        if (path.Contains(cell))
+                            g.FillEllipse(Brushes.Gainsboro, x + cellSize / 3, y + cellSize / 3, cellSize / 3, cellSize / 3);
+
+                        // Draw start and end
                         if (cell == maze.Start)
                             g.FillRectangle(Brushes.LimeGreen, x + cellSize / 8, y + cellSize / 8, cellSize - cellSize / 4, cellSize - cellSize / 4);
 
@@ -87,10 +92,6 @@ namespace MazeGenerator
                         // Draw bottom wall
                         if (cell.Down == null || !cell.isLinked(cell.Down))
                             g.DrawLine(wallPen, x, y + cellSize, x + cellSize, y + cellSize);
-
-                        // Draw Path
-                        if (path.Contains(cell))
-                            g.FillRectangle(Brushes.Blue, x + cellSize / 4, y + cellSize / 4, cellSize / 2, cellSize / 2);
                     }
                 }
             }

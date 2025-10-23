@@ -20,19 +20,29 @@ namespace MazeGenerator
 
             currentCell.Visited = true;
             DFSStack.Push(currentCell);
+
+            for (int i = 0; i < maze.Rows; i++)
+            {
+                for (int j = 0; j < maze.Cols; j++)
+                {
+                    maze.GetCell(i,j).Visited = false;
+                }
+            }
+
             while (!DFSStack.IsEmpty())
             {
-                if (currentCell == maze.End)
-                    break;
-
                 visited = true;
 
                 currentCell = DFSStack.Peek();
                 DFSStack.Pop();
 
+                if (currentCell == maze.End)
+                    break;
+
+                //checks if cell is linked, not just to specified cell
                 foreach (MazeCell neighbour in currentCell.Neighbours())
                 {
-                    if (neighbour.Visited == false)
+                    if (neighbour.Visited == false && neighbour.isLinked(currentCell))
                         visited = false;
                 }
 
@@ -41,6 +51,7 @@ namespace MazeGenerator
                     DFSStack.Push(currentCell);
 
                     nextCell = currentCell.UnvisitedNeighbour();
+
                     nextCell.Visited = true;
                     DFSStack.Push(nextCell);
                 }
