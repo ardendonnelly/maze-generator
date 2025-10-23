@@ -1,6 +1,6 @@
 # Maze Generator
 
-A simple maze generation program using various maze generating algorithms
+A simple maze generation windows form app using various maze generating algorithms
 
 Currently Includes:
 - Binary Tree Generation
