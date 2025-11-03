@@ -14,7 +14,7 @@ namespace MazeGenerator
 
             MazeCell currentCell = maze.GetCell(0, 0);
             MazeCell nextCell;
-            Stack DFSStack = new Stack();    
+            Stack DFSStack = new Stack();
 
             bool visited;
 
@@ -25,7 +25,7 @@ namespace MazeGenerator
             {
                 for (int j = 0; j < maze.Cols; j++)
                 {
-                    maze.GetCell(i,j).Visited = false;
+                    maze.GetCell(i, j).Visited = false;
                 }
             }
 
@@ -39,18 +39,18 @@ namespace MazeGenerator
                 if (currentCell == maze.End)
                     break;
 
-                //checks if cell is linked, not just to specified cell
                 foreach (MazeCell neighbour in currentCell.Neighbours())
                 {
                     if (neighbour.Visited == false && neighbour.isLinked(currentCell))
                         visited = false;
                 }
 
+                // grabs a random neighbour, not just a linked one
                 if (visited == false)
                 {
                     DFSStack.Push(currentCell);
 
-                    nextCell = currentCell.UnvisitedNeighbour();
+                    nextCell = currentCell.LinkedNeighbour(currentCell);
 
                     nextCell.Visited = true;
                     DFSStack.Push(nextCell);
