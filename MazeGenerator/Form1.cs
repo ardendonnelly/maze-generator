@@ -20,8 +20,17 @@ namespace MazeGenerator
         {
             Maze maze = new Maze(10, 10); // width and height
 
-            //Generation.BinaryTree(maze);
-            Generation.IterativeBacktracking(maze);
+
+
+            if (CBGenerationAlg.SelectedItem == null)
+                CBGenerationAlg.SelectedIndex = 0;
+
+            object selectedItem = CBGenerationAlg.SelectedItem;
+
+            if (selectedItem == "Easy")
+                Generation.BinaryTree(maze);
+            else if (selectedItem == "Medium")
+                Generation.IterativeBacktracking(maze);
 
 
 
@@ -69,7 +78,7 @@ namespace MazeGenerator
 
                         // Draw path down
                         if (cell.isLinked(cell.Down) && path.Contains(cell) && path.Contains(cell.Down))
-                          g.DrawLine(pathPen, x + cellSize / 2, y + cellSize / 2, x + cellSize / 2, y + cellSize);
+                            g.DrawLine(pathPen, x + cellSize / 2, y + cellSize / 2, x + cellSize / 2, y + cellSize);
 
                         // Draw path right
                         if (cell.isLinked(cell.Right) && path.Contains(cell) && path.Contains(cell.Right))
