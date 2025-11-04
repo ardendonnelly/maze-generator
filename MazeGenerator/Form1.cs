@@ -49,6 +49,7 @@ namespace MazeGenerator
             {
                 g.Clear(Color.White);
                 Pen wallPen = Pens.Black;
+                Pen pathPen = Pens.Gainsboro;
 
                 Font font = new Font("Arial", 8);
                 StringFormat format = new StringFormat
@@ -65,9 +66,23 @@ namespace MazeGenerator
                         int x = col * cellSize;
                         int y = row * cellSize;
 
-                        // Draw solution path
-                        if (path.Contains(cell))
-                            g.FillEllipse(Brushes.Gainsboro, x + cellSize / 3, y + cellSize / 3, cellSize / 3, cellSize / 3);
+
+                        // Draw path down
+                        if (cell.isLinked(cell.Down) && path.Contains(cell) && path.Contains(cell.Down))
+                          g.DrawLine(pathPen, x + cellSize / 2, y + cellSize / 2, x + cellSize / 2, y + cellSize);
+
+                        // Draw path right
+                        if (cell.isLinked(cell.Right) && path.Contains(cell) && path.Contains(cell.Right))
+                            g.DrawLine(pathPen, x + cellSize / 2, y + cellSize / 2, x + cellSize, y + cellSize / 2);
+
+                        // Draw path left
+                        if (cell.isLinked(cell.Left) && path.Contains(cell) && path.Contains(cell.Left))
+                            g.DrawLine(pathPen, x, y + cellSize / 2, x + cellSize / 2, y + cellSize / 2);
+
+                        // Draw path up
+                        if (cell.isLinked(cell.Up) && path.Contains(cell) && path.Contains(cell.Up))
+                            g.DrawLine(pathPen, x + cellSize / 2, y + cellSize / 2, x + cellSize / 2, y);
+
 
                         // Draw start and end
                         if (cell == maze.Start)
