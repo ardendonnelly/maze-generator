@@ -20,16 +20,14 @@ namespace MazeGenerator
         {
             Maze maze = new Maze(10, 10); // width and height
 
-
-
             if (CBGenerationAlg.SelectedItem == null)
                 CBGenerationAlg.SelectedIndex = 0;
 
             object selectedItem = CBGenerationAlg.SelectedItem;
 
-            if (selectedItem == "Easy")
+            if (selectedItem.ToString() == "Easy")
                 Generation.BinaryTree(maze);
-            else if (selectedItem == "Medium")
+            else if (selectedItem.ToString() == "Medium")
                 Generation.IterativeBacktracking(maze);
 
 
@@ -58,7 +56,7 @@ namespace MazeGenerator
             {
                 g.Clear(Color.White);
                 Pen wallPen = Pens.Black;
-                Pen pathPen = Pens.Gainsboro;
+                Pen pathPen = Pens.LightBlue;
 
                 Font font = new Font("Arial", 8);
                 StringFormat format = new StringFormat

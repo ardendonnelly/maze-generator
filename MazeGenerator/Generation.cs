@@ -17,21 +17,51 @@ namespace MazeGenerator
 
             for (int row = 0; row < maze.Rows; row++)
             {
-                for (int col = 0; col < maze.Rows; col++)
+                for (int col = 0; col < maze.Cols; col++)
                 {
+                    // Solution in which going down and right always solves
+                    // Introduces visual bug as algorithm is one step ahead
+
+                    
                     currentCell = maze.GetCell(row, col);
+                    // 50/50 chance it either goes down or right
                     if (random.Next(2) == 0)
                         nextCell = maze.GetCell(row + 1, col);
                     else
                         nextCell = maze.GetCell(row, col + 1);
 
-                    if (row == maze.Rows - 1 && col == maze.Rows - 1)
+                    // makes last row and column linked
+                    if (row == maze.Rows - 1 && col == maze.Cols - 1)
                         nextCell = maze.GetCell(row, col);
                     else if (row == maze.Rows - 1)
                         nextCell = maze.GetCell(row, col + 1);
-                    else if (col == maze.Rows - 1)
+                    else if (col == maze.Cols - 1)
                         nextCell = maze.GetCell(row + 1, col);
                     currentCell.Link(nextCell, true);
+                    
+
+
+                    // Solution in which going down and right does not solve
+                    // Introduces visual bug as algorithm is one step behind
+
+                    /*
+                    currentCell = maze.GetCell(row, col);
+                    // 50/50 chance it either goes up or left
+                    if (random.Next(2) == 0)
+                        nextCell = maze.GetCell(row - 1, col);
+                    else
+                        nextCell = maze.GetCell(row, col - 1);
+
+                    // makes first row and column linked
+                    if (row == 0 && col == 0)
+                        nextCell = maze.GetCell(row, col);
+
+                    else if (row == 0)
+                        nextCell = maze.GetCell(row, col - 1);
+                    else if (col == 0)
+                        nextCell = maze.GetCell(row - 1, col);
+                    currentCell.Link(nextCell, true);
+                    */
                 }
             }
         }
