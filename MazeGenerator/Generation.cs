@@ -38,8 +38,6 @@ namespace MazeGenerator
 
         public static void IterativeBacktracking(Maze maze)
         {
-            Random random = new Random();
-
             MazeCell currentCell = maze.GetCell(0, 0);
             MazeCell nextCell;
             Stack IBStack = new Stack();
@@ -50,7 +48,6 @@ namespace MazeGenerator
             IBStack.Push(currentCell);
             while (!IBStack.IsEmpty())
             {
-                int neighbourCount = currentCell.Neighbours().Count;
                 visited = true;
 
                 currentCell = IBStack.Peek();

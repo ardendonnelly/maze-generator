@@ -58,7 +58,7 @@ namespace MazeGenerator
             }
         }
 
-        public List<MazeCell> Neighbours() 
+        public List<MazeCell> Neighbours()
         // It returns only the valid neighbors — meaning it skips any direction that
         // doesn’t exist (e.g., if the cell is on the edge of the maze,
         // it won’t have an Up or Left neighbor).
@@ -80,7 +80,7 @@ namespace MazeGenerator
 
             return neighbours;
         }
-        
+
         public MazeCell UnvisitedNeighbour()
         {
             Random random = new Random();
@@ -96,6 +96,27 @@ namespace MazeGenerator
                 neighbours.Add(Left);
 
             if (Right != null && Right.Visited == false)
+                neighbours.Add(Right);
+
+            int randNumb = random.Next(neighbours.Count);
+            return neighbours[randNumb];
+        }
+
+        public MazeCell LinkedNeighbour(MazeCell currentCell)
+        {
+            Random random = new Random();
+            List<MazeCell> neighbours = new List<MazeCell>();
+
+            if (Up != null && Up.Visited == false && Up.isLinked(currentCell))
+                neighbours.Add(Up);
+
+            if (Down != null && Down.Visited == false && Down.isLinked(currentCell))
+                neighbours.Add(Down);
+
+            if (Left != null && Left.Visited == false && Left.isLinked(currentCell))
+                neighbours.Add(Left);
+
+            if (Right != null && Right.Visited == false && Right.isLinked(currentCell))
                 neighbours.Add(Right);
 
             int randNumb = random.Next(neighbours.Count);

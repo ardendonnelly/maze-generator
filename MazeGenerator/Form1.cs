@@ -20,8 +20,19 @@ namespace MazeGenerator
         {
             Maze maze = new Maze(10, 10); // width and height
 
-            //Generation.BinaryTree(maze);
-            Generation.IterativeBacktracking(maze);
+
+
+            if (CBGenerationAlg.SelectedItem == null)
+                CBGenerationAlg.SelectedIndex = 0;
+
+            object selectedItem = CBGenerationAlg.SelectedItem;
+
+            if (selectedItem == "Easy")
+                Generation.BinaryTree(maze);
+            else if (selectedItem == "Medium")
+                Generation.IterativeBacktracking(maze);
+
+
 
             maze.Start = maze.GetCell(0, 0);
             maze.End = maze.GetCell(maze.Rows - 1, maze.Cols - 1);
@@ -36,10 +47,19 @@ namespace MazeGenerator
 
             Bitmap bmp = new Bitmap(width, height);
 
+
+
+            List<MazeCell> path = new List<MazeCell>();
+            path = Solver.DepthFirstSearch(maze);
+
+
+
             using (Graphics g = Graphics.FromImage(bmp))
             {
                 g.Clear(Color.White);
                 Pen wallPen = Pens.Black;
+                Pen pathPen = Pens.Gainsboro;
+
                 Font font = new Font("Arial", 8);
                 StringFormat format = new StringFormat
                 {
@@ -55,7 +75,25 @@ namespace MazeGenerator
                         int x = col * cellSize;
                         int y = row * cellSize;
 
-                        // Start and end
+
+                        // Draw path down
+                        if (cell.isLinked(cell.Down) && path.Contains(cell) && path.Contains(cell.Down))
+                            g.DrawLine(pathPen, x + cellSize / 2, y + cellSize / 2, x + cellSize / 2, y + cellSize);
+
+                        // Draw path right
+                        if (cell.isLinked(cell.Right) && path.Contains(cell) && path.Contains(cell.Right))
+                            g.DrawLine(pathPen, x + cellSize / 2, y + cellSize / 2, x + cellSize, y + cellSize / 2);
+
+                        // Draw path left
+                        if (cell.isLinked(cell.Left) && path.Contains(cell) && path.Contains(cell.Left))
+                            g.DrawLine(pathPen, x, y + cellSize / 2, x + cellSize / 2, y + cellSize / 2);
+
+                        // Draw path up
+                        if (cell.isLinked(cell.Up) && path.Contains(cell) && path.Contains(cell.Up))
+                            g.DrawLine(pathPen, x + cellSize / 2, y + cellSize / 2, x + cellSize / 2, y);
+
+
+                        // Draw start and end
                         if (cell == maze.Start)
                             g.FillRectangle(Brushes.LimeGreen, x + cellSize / 8, y + cellSize / 8, cellSize - cellSize / 4, cellSize - cellSize / 4);
 

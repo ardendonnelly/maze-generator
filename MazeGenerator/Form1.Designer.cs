@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             pictureBox2 = new PictureBox();
+            CBGenerationAlg = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
@@ -41,12 +42,24 @@
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
             // 
+            // CBGenerationAlg
+            // 
+            CBGenerationAlg.Font = new Font("Courier New", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            CBGenerationAlg.FormattingEnabled = true;
+            CBGenerationAlg.Items.AddRange(new object[] { "Easy", "Medium" });
+            CBGenerationAlg.Location = new Point(541, 12);
+            CBGenerationAlg.Name = "CBGenerationAlg";
+            CBGenerationAlg.Size = new Size(247, 29);
+            CBGenerationAlg.TabIndex = 1;
+            CBGenerationAlg.SelectedIndexChanged += Form1_Load;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(800, 450);
+            Controls.Add(CBGenerationAlg);
             Controls.Add(pictureBox2);
             Name = "Form1";
             Text = "Form1";
@@ -59,5 +72,6 @@
         #endregion
 
         private PictureBox pictureBox2;
+        private ComboBox CBGenerationAlg;
     }
 }
