@@ -63,7 +63,7 @@ namespace MazeGenerator
                 currentCell = DFSStack.Peek();
                 DFSStack.Pop();
             }
-
+            path.Add(maze.Start);
             return path;
         }
     }

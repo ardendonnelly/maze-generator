@@ -18,7 +18,8 @@ namespace MazeGenerator
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Maze maze = new Maze(10, 10); // width and height
+            Maze maze = new Maze(10, 10);
+            int cellSize = 60;
 
             if (CBGenerationAlg.SelectedItem == null)
                 CBGenerationAlg.SelectedIndex = 0;
@@ -26,16 +27,26 @@ namespace MazeGenerator
             object selectedItem = CBGenerationAlg.SelectedItem;
 
             if (selectedItem.ToString() == "Easy")
+            {
                 Generation.BinaryTree(maze);
+            }
             else if (selectedItem.ToString() == "Medium")
+            {
+                maze = new Maze(15, 15);
+                cellSize = 40;
                 Generation.IterativeBacktracking(maze);
-
-
+            }
+            else if (selectedItem.ToString() == "Hard")
+            {
+                maze = new Maze(20, 20);
+                cellSize = 30;
+                Generation.IterativeBacktracking(maze);
+            }
 
             maze.Start = maze.GetCell(0, 0);
             maze.End = maze.GetCell(maze.Rows - 1, maze.Cols - 1);
 
-            pictureBox2.Image = DrawMaze(maze, 40); // cell size is 40 for 10x10, 20 for 20x20
+            pictureBox2.Image = DrawMaze(maze, cellSize); // cell size is 40 for 10x10, 20 for 20x20
         }
 
         public Bitmap DrawMaze(Maze maze, int cellSize)
@@ -45,11 +56,12 @@ namespace MazeGenerator
 
             Bitmap bmp = new Bitmap(width, height);
 
-
-
             List<MazeCell> path = new List<MazeCell>();
-            path = Solver.DepthFirstSearch(maze);
 
+            // Substitute for event handler
+
+            if (CHPathShown.Checked)
+                path = Solver.DepthFirstSearch(maze);
 
 
             using (Graphics g = Graphics.FromImage(bmp))
@@ -119,5 +131,14 @@ namespace MazeGenerator
             }
             return bmp;
         }
+        /*
+        private void CHPathShown_CheckedChanged(object sender, EventArgs e, Maze maze, List<MazeCell> path)
+        {
+            if (CHPathShown.Checked)
+            {
+                path = Solver.DepthFirstSearch(maze);
+            }
+        }
+        */
     }
 }
