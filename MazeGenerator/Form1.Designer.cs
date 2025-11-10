@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pictureBox2 = new PictureBox();
+            PBMaze = new PictureBox();
             CBGenerationAlg = new ComboBox();
             CHPathShown = new CheckBox();
             button1 = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PBMaze).BeginInit();
             SuspendLayout();
             // 
-            // pictureBox2
+            // PBMaze
             // 
-            pictureBox2.Location = new Point(19, 17);
-            pictureBox2.Margin = new Padding(5, 4, 5, 4);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(100, 50);
-            pictureBox2.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox2.TabIndex = 0;
-            pictureBox2.TabStop = false;
+            PBMaze.Location = new Point(19, 17);
+            PBMaze.Margin = new Padding(5, 4, 5, 4);
+            PBMaze.Name = "PBMaze";
+            PBMaze.Size = new Size(100, 50);
+            PBMaze.SizeMode = PictureBoxSizeMode.AutoSize;
+            PBMaze.TabIndex = 0;
+            PBMaze.TabStop = false;
             // 
             // CBGenerationAlg
             // 
@@ -94,20 +94,20 @@
             Controls.Add(button1);
             Controls.Add(CHPathShown);
             Controls.Add(CBGenerationAlg);
-            Controls.Add(pictureBox2);
+            Controls.Add(PBMaze);
             Font = new Font("Courier New", 14.25F);
             Margin = new Padding(5, 4, 5, 4);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PBMaze).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private PictureBox pictureBox2;
+        private PictureBox PBMaze;
         private ComboBox CBGenerationAlg;
         private CheckBox CHPathShown;
         private Button button1;

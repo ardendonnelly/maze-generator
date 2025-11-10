@@ -12,19 +12,18 @@ namespace MazeGenerator
 {
     public partial class Form1 : Form
     {
+        private Maze maze = new Maze(10, 10);
+        private int cellSize = 60;
+        private bool pathShown = false;
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        Maze maze = new Maze(10, 10);
-        int cellSize = 60;
-        bool pathShown = false;
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-
             if (CBGenerationAlg.SelectedItem == null)
                 CBGenerationAlg.SelectedIndex = 0;
 
@@ -32,6 +31,8 @@ namespace MazeGenerator
 
             if (selectedItem.ToString() == "Easy")
             {
+                maze = new Maze(10, 10);
+                cellSize = 60;
                 Generation.BinaryTree(maze);
             }
             else if (selectedItem.ToString() == "Medium")
@@ -50,11 +51,11 @@ namespace MazeGenerator
             maze.Start = maze.GetCell(0, 0);
             maze.End = maze.GetCell(maze.Rows - 1, maze.Cols - 1);
 
-            pictureBox2.Image = DrawMaze(maze, cellSize, pathShown); // cell size is 40 for 10x10, 20 for 20x20
+            PBMaze.Image = DrawMaze(maze, cellSize, pathShown); // cell size is 40 for 10x10, 20 for 20x20
         }
 
 
-        public Bitmap DrawMaze(Maze maze, int cellSize, bool pathShown)
+        public Bitmap DrawMaze(Maze maze, int cellSize, bool showPath)
         {
             int width = maze.Cols * cellSize + 1;
             int height = maze.Rows * cellSize + 1;
@@ -62,8 +63,11 @@ namespace MazeGenerator
             Bitmap bmp = new Bitmap(width, height);
 
             List<MazeCell> path = new List<MazeCell>();
-            path = Solver.DepthFirstSearch(maze);
-
+            if (showPath)
+            {
+                path = Solver.DepthFirstSearch(maze);
+            }
+            
 
             using (Graphics g = Graphics.FromImage(bmp))
             {
@@ -87,7 +91,7 @@ namespace MazeGenerator
                         int y = row * cellSize;
 
 
-                        /*
+
                         // Draw path down
                         if (cell.isLinked(cell.Down) && path.Contains(cell) && path.Contains(cell.Down))
                             g.DrawLine(pathPen, x + cellSize / 2, y + cellSize / 2, x + cellSize / 2, y + cellSize);
@@ -103,7 +107,8 @@ namespace MazeGenerator
                         // Draw path up
                         if (cell.isLinked(cell.Up) && path.Contains(cell) && path.Contains(cell.Up))
                             g.DrawLine(pathPen, x + cellSize / 2, y + cellSize / 2, x + cellSize / 2, y);
-                        */
+
+
 
                         // Draw start and end
                         if (cell == maze.Start)
@@ -136,7 +141,19 @@ namespace MazeGenerator
         
         private void CHPathShown_CheckedChanged(object sender, EventArgs e)
         {
-            DrawMaze(maze, cellSize);
+            pathShown = CHPathShown.Checked;
+
+            if (maze != null)
+            {
+                if (PBMaze.Image != null)
+                {
+                    PBMaze.Image.Dispose(); // good practice to avoid memory leak
+                    PBMaze.Image = null;
+                }
+
+                PBMaze.Image = DrawMaze(maze, cellSize, pathShown);
+                PBMaze.Invalidate();
+            }
         }
     }
 }

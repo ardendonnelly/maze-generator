@@ -19,10 +19,6 @@ namespace MazeGenerator
             {
                 for (int col = 0; col < maze.Cols; col++)
                 {
-                    // Solution in which going down and right always solves
-                    // Introduces visual bug as algorithm is one step ahead
-
-                    
                     currentCell = maze.GetCell(row, col);
                     // 50/50 chance it either goes down or right
                     if (random.Next(2) == 0)
@@ -38,30 +34,6 @@ namespace MazeGenerator
                     else if (col == maze.Cols - 1)
                         nextCell = maze.GetCell(row + 1, col);
                     currentCell.Link(nextCell, true);
-                    
-
-
-                    // Solution in which going down and right does not solve
-                    // Introduces visual bug as algorithm is one step behind
-
-                    /*
-                    currentCell = maze.GetCell(row, col);
-                    // 50/50 chance it either goes up or left
-                    if (random.Next(2) == 0)
-                        nextCell = maze.GetCell(row - 1, col);
-                    else
-                        nextCell = maze.GetCell(row, col - 1);
-
-                    // makes first row and column linked
-                    if (row == 0 && col == 0)
-                        nextCell = maze.GetCell(row, col);
-
-                    else if (row == 0)
-                        nextCell = maze.GetCell(row, col - 1);
-                    else if (col == 0)
-                        nextCell = maze.GetCell(row - 1, col);
-                    currentCell.Link(nextCell, true);
-                    */
                 }
             }
         }
@@ -101,6 +73,12 @@ namespace MazeGenerator
                     IBStack.Push(nextCell);
                 }
             }
+        }
+
+        // Kruskal's, uses hashsets
+        public static void Kruskals(Maze maze)
+        {
+            //foreach (MazeWall wall in wallList)
         }
     }
 }
