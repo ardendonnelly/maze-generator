@@ -47,6 +47,7 @@
             // 
             // CBGenerationAlg
             // 
+            CBGenerationAlg.BackColor = SystemColors.Window;
             CBGenerationAlg.DropDownStyle = ComboBoxStyle.DropDownList;
             CBGenerationAlg.Font = new Font("Courier New", 15.75F);
             CBGenerationAlg.FormattingEnabled = true;
@@ -61,6 +62,7 @@
             // CHPathShown
             // 
             CHPathShown.AutoSize = true;
+            CHPathShown.BackColor = Color.White;
             CHPathShown.Font = new Font("Courier New", 15.75F);
             CHPathShown.Location = new Point(1092, 29);
             CHPathShown.Margin = new Padding(5, 4, 5, 4);
@@ -68,8 +70,8 @@
             CHPathShown.Size = new Size(146, 27);
             CHPathShown.TabIndex = 2;
             CHPathShown.Text = "Show Path";
-            CHPathShown.UseVisualStyleBackColor = true;
-            //CHPathShown.CheckedChanged += CHPathShown_CheckedChanged;
+            CHPathShown.UseVisualStyleBackColor = false;
+            CHPathShown.CheckedChanged += CHPathShown_CheckedChanged;
             // 
             // button1
             // 
