@@ -34,7 +34,7 @@ namespace MazeGenerator
             Left = null;
             Right = null;
             links = new HashSet<MazeCell>();
-            cellSet = new HashSet<MazeCell>();
+            cellSet = new HashSet<MazeCell>() { this };
             Visited = visited;
         }
 
@@ -61,8 +61,24 @@ namespace MazeGenerator
             }
         }
 
+        public bool cellSetContains(MazeCell cell)
+        {
+            return cellSet.Contains(cell); // checks if the specified cell is in the links HashSet
+        }
 
-        public IEnumerable<MazeCell> CellSet
+
+        public void MergeCellSet(MazeCell nextCell)
+        {
+            this.cellSet.UnionWith(nextCell.cellSet);
+
+            // iterate through cells and set them all to the same new merged set
+            foreach (var cell in nextCell.cellSet)
+            {
+                cell.cellSet = this.cellSet;
+            }
+        }
+
+        public HashSet<MazeCell> CellSet
         {
             get
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -75,23 +76,61 @@ namespace MazeGenerator
             }
         }
 
-        // Kruskal's, uses hashsets
         public static void Kruskals(Maze maze)
         {
-            List<MazeCell> walls = new List<MazeCell>();
-            // pick random unvisited cell
-            // mark as visited
-
-
+            Random random = new Random();
             MazeCell currentCell = maze.GetCell(0, 0);
             MazeCell nextCell = maze.GetCell(0, 0);
-            
-            //foreach (wall in wallList)
 
-            if (currentCell.CellSet.Contains(nextCell) && nextCell.CellSet.Contains(currentCell))
+            var walls = new List<(MazeCell, MazeCell)> { };
+
+
+
+            // create list of walls
+            for (int row = 0; row < maze.Rows; row++)
             {
-                currentCell.Link(nextCell);
-                currentCell.CellSet.Union(nextCell.CellSet);
+                for (int col = 0; col < maze.Cols; col++)
+                {
+                    currentCell = maze.GetCell(row, col);
+
+                    //if (currentCell.Up != null && !walls.Any(m => m.Item1 == currentCell.Up))
+                    //    walls.Add((currentCell, currentCell.Up));
+
+                    // checking if at edges of maze
+                    // don't need to check all cells, down and right affects all walls
+                    if (currentCell.Right != null)
+                        walls.Add((currentCell, currentCell.Right));
+                    if (currentCell.Down != null)
+                        walls.Add((currentCell, currentCell.Down));
+                }
+            }
+
+
+            // randomize list order
+            // Modern version of Fischer and Yate's method
+            int randNumb = random.Next(walls.Count);
+            for (int i = 1; i < walls.Count - 1; i++)
+            {
+                randNumb = random.Next(i + 1);
+                var temp = walls[randNumb];
+                walls[randNumb] = walls[i];
+                walls[i] = temp;
+            }
+
+
+
+            // link cells from wall list
+            foreach (var wall in walls)
+            {
+                currentCell = wall.Item1;
+                nextCell = wall.Item2;
+
+                if (!currentCell.cellSetContains(nextCell))
+                {
+                    currentCell.Link(nextCell);
+                    //currentCell.CellSet.UnionWith(nextCell.CellSet);
+                    currentCell.MergeCellSet(nextCell);
+                }
             }
         }
     }

@@ -45,7 +45,7 @@ namespace MazeGenerator
             {
                 maze = new Maze(20, 20);
                 cellSize = 30;
-                Generation.IterativeBacktracking(maze);
+                Generation.Kruskals(maze);
             }
 
             maze.Start = maze.GetCell(0, 0);
