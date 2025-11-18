@@ -78,7 +78,21 @@ namespace MazeGenerator
         // Kruskal's, uses hashsets
         public static void Kruskals(Maze maze)
         {
-            //foreach (MazeWall wall in wallList)
+            List<MazeCell> walls = new List<MazeCell>();
+            // pick random unvisited cell
+            // mark as visited
+
+
+            MazeCell currentCell = maze.GetCell(0, 0);
+            MazeCell nextCell = maze.GetCell(0, 0);
+            
+            //foreach (wall in wallList)
+
+            if (currentCell.CellSet.Contains(nextCell) && nextCell.CellSet.Contains(currentCell))
+            {
+                currentCell.Link(nextCell);
+                currentCell.CellSet.Union(nextCell.CellSet);
+            }
         }
     }
 }

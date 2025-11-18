@@ -22,7 +22,7 @@ namespace MazeGenerator
         // meaning there is a passage between them (i.e., no wall).
         private HashSet<MazeCell> links = new HashSet<MazeCell>();
 
-        private HashSet<MazeCell> connected = new HashSet<MazeCell>();
+        private HashSet<MazeCell> cellSet = new HashSet<MazeCell>();
 
         // constructor
         public MazeCell(int row, int col, bool visited)
@@ -34,7 +34,7 @@ namespace MazeGenerator
             Left = null;
             Right = null;
             links = new HashSet<MazeCell>();
-            connected = new HashSet<MazeCell>();
+            cellSet = new HashSet<MazeCell>();
             Visited = visited;
         }
 
@@ -58,6 +58,15 @@ namespace MazeGenerator
             get
             {
                 return links;
+            }
+        }
+
+
+        public IEnumerable<MazeCell> CellSet
+        {
+            get
+            {
+                return cellSet;
             }
         }
 
