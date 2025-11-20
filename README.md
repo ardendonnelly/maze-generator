@@ -4,7 +4,7 @@ A simple maze generation windows form app using various maze generating algorith
 
 Currently Includes:
 - Binary Tree Generation
-- Recursive Backtracker Generation
+- Iterative Backtracking Generation
 - Randomized Iterative Kurskal's Generation
 - Depth First Search Solving Algorithm
 - Generation Algorithm Dropdown Menu
