@@ -32,6 +32,7 @@
             CBGenerationAlg = new ComboBox();
             CHPathShown = new CheckBox();
             button1 = new Button();
+            BTAdvancedOptions = new Button();
             ((System.ComponentModel.ISupportInitialize)PBMaze).BeginInit();
             SuspendLayout();
             // 
@@ -51,7 +52,7 @@
             CBGenerationAlg.DropDownStyle = ComboBoxStyle.DropDownList;
             CBGenerationAlg.Font = new Font("Courier New", 15.75F);
             CBGenerationAlg.FormattingEnabled = true;
-            CBGenerationAlg.Items.AddRange(new object[] { "Easy", "Medium", "Hard" });
+            CBGenerationAlg.Items.AddRange(new object[] { "Easy", "Medium", "Hard", "Custom" });
             CBGenerationAlg.Location = new Point(922, 88);
             CBGenerationAlg.Margin = new Padding(5, 4, 5, 4);
             CBGenerationAlg.Name = "CBGenerationAlg";
@@ -85,12 +86,25 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += Form1_Load;
             // 
+            // BTAdvancedOptions
+            // 
+            BTAdvancedOptions.Font = new Font("Courier New", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BTAdvancedOptions.Location = new Point(922, 225);
+            BTAdvancedOptions.Margin = new Padding(5, 4, 5, 4);
+            BTAdvancedOptions.Name = "BTAdvancedOptions";
+            BTAdvancedOptions.Size = new Size(316, 41);
+            BTAdvancedOptions.TabIndex = 4;
+            BTAdvancedOptions.Text = "Custom Options";
+            BTAdvancedOptions.UseVisualStyleBackColor = true;
+            BTAdvancedOptions.Click += button2_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(11F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1264, 681);
+            Controls.Add(BTAdvancedOptions);
             Controls.Add(button1);
             Controls.Add(CHPathShown);
             Controls.Add(CBGenerationAlg);
@@ -111,5 +125,6 @@
         private ComboBox CBGenerationAlg;
         private CheckBox CHPathShown;
         private Button button1;
+        private Button BTAdvancedOptions;
     }
 }

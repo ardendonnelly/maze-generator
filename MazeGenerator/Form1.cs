@@ -16,6 +16,8 @@ namespace MazeGenerator
         private int cellSize = 60;
         private bool pathShown = false;
 
+        Form2 advancedForm = new Form2();
+
         public Form1()
         {
             InitializeComponent();
@@ -24,6 +26,8 @@ namespace MazeGenerator
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            string advancedAlg = advancedForm.generationAlgorithm;
+
             if (CBGenerationAlg.SelectedItem == null)
                 CBGenerationAlg.SelectedIndex = 0;
 
@@ -47,8 +51,19 @@ namespace MazeGenerator
                 cellSize = 30;
                 Generation.Kruskals(maze);
             }
+            else if (selectedItem.ToString() == "Custom")
+            {
+                maze = new Maze(advancedForm.width, advancedForm.height);
+                cellSize = 30;
+                if (advancedAlg == "Binary Tree")
+                    Generation.BinaryTree(maze);
+                if (advancedAlg == "Iterative Backtracker")
+                    Generation.IterativeBacktracking(maze);
+                if (advancedAlg == "Randomized Kruskal's")
+                    Generation.Kruskals(maze);
+            }
 
-            maze.Start = maze.GetCell(0, 0);
+                maze.Start = maze.GetCell(0, 0);
             maze.End = maze.GetCell(maze.Rows - 1, maze.Cols - 1);
 
             PBMaze.Image = DrawMaze(maze, cellSize, pathShown); // cell size is 40 for 10x10, 20 for 20x20
@@ -67,7 +82,7 @@ namespace MazeGenerator
             {
                 path = Solver.DepthFirstSearch(maze);
             }
-            
+
 
             using (Graphics g = Graphics.FromImage(bmp))
             {
@@ -138,7 +153,7 @@ namespace MazeGenerator
             }
             return bmp;
         }
-        
+
         private void CHPathShown_CheckedChanged(object sender, EventArgs e)
         {
             pathShown = CHPathShown.Checked;
@@ -154,6 +169,11 @@ namespace MazeGenerator
                 PBMaze.Image = DrawMaze(maze, cellSize, pathShown);
                 PBMaze.Invalidate();
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            advancedForm.ShowDialog();
         }
     }
 }
