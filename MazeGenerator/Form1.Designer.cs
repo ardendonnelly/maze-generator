@@ -38,6 +38,7 @@
             // 
             // PBMaze
             // 
+            PBMaze.BackColor = Color.Transparent;
             PBMaze.Location = new Point(19, 17);
             PBMaze.Margin = new Padding(5, 4, 5, 4);
             PBMaze.Name = "PBMaze";
@@ -63,7 +64,7 @@
             // CHPathShown
             // 
             CHPathShown.AutoSize = true;
-            CHPathShown.BackColor = Color.White;
+            CHPathShown.BackColor = Color.Transparent;
             CHPathShown.Font = new Font("Courier New", 15.75F);
             CHPathShown.Location = new Point(1092, 29);
             CHPathShown.Margin = new Padding(5, 4, 5, 4);
@@ -102,7 +103,7 @@
             // 
             AutoScaleDimensions = new SizeF(11F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1264, 681);
             Controls.Add(BTAdvancedOptions);
             Controls.Add(button1);
@@ -112,7 +113,7 @@
             Font = new Font("Courier New", 14.25F);
             Margin = new Padding(5, 4, 5, 4);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Maze Generator";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)PBMaze).EndInit();
             ResumeLayout(false);

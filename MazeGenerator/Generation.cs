@@ -1,12 +1,4 @@
-﻿using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MazeGenerator
+﻿namespace MazeGenerator
 {
     public class Generation
     {
@@ -56,7 +48,7 @@ namespace MazeGenerator
                 currentCell = IBStack.Peek();
                 IBStack.Pop();
 
-                foreach (MazeCell neighbour in currentCell.Neighbours()) 
+                foreach (MazeCell neighbour in currentCell.Neighbours())
                 {
                     if (neighbour.Visited == false)
                     {

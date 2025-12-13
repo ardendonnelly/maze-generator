@@ -1,13 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
 namespace MazeGenerator
 {
     public partial class Form1 : Form
@@ -26,6 +16,7 @@ namespace MazeGenerator
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            BTAdvancedOptions.Enabled = false;
             string advancedAlg = advancedForm.generationAlgorithm;
 
             if (CBGenerationAlg.SelectedItem == null)
@@ -53,8 +44,14 @@ namespace MazeGenerator
             }
             else if (selectedItem.ToString() == "Custom")
             {
+                BTAdvancedOptions.Enabled = true;
                 maze = new Maze(advancedForm.width, advancedForm.height);
-                cellSize = 30;
+
+                if (advancedForm.width > advancedForm.height)
+                    cellSize = 600 / advancedForm.width;
+                else
+                    cellSize = 600 / advancedForm.height;
+
                 if (advancedAlg == "Binary Tree")
                     Generation.BinaryTree(maze);
                 if (advancedAlg == "Iterative Backtracker")
@@ -63,7 +60,7 @@ namespace MazeGenerator
                     Generation.Kruskals(maze);
             }
 
-                maze.Start = maze.GetCell(0, 0);
+            maze.Start = maze.GetCell(0, 0);
             maze.End = maze.GetCell(maze.Rows - 1, maze.Cols - 1);
 
             PBMaze.Image = DrawMaze(maze, cellSize, pathShown); // cell size is 40 for 10x10, 20 for 20x20
@@ -86,9 +83,11 @@ namespace MazeGenerator
 
             using (Graphics g = Graphics.FromImage(bmp))
             {
-                g.Clear(Color.White);
-                Pen wallPen = Pens.Black;
-                Pen pathPen = Pens.LightBlue;
+                g.Clear(advancedForm.backgroundColour);
+                Pen wallPen = new(advancedForm.wallColour);
+                Pen pathPen = new(advancedForm.pathColour);
+                SolidBrush startBrush = new SolidBrush(advancedForm.startColour);
+                SolidBrush endBrush = new SolidBrush(advancedForm.endColour);
 
                 Font font = new Font("Arial", 8);
                 StringFormat format = new StringFormat
@@ -127,10 +126,10 @@ namespace MazeGenerator
 
                         // Draw start and end
                         if (cell == maze.Start)
-                            g.FillRectangle(Brushes.LimeGreen, x + cellSize / 8, y + cellSize / 8, cellSize - cellSize / 4, cellSize - cellSize / 4);
+                            g.FillRectangle(startBrush, x + cellSize / 8, y + cellSize / 8, cellSize - cellSize / 4, cellSize - cellSize / 4);
 
                         else if (cell == maze.End)
-                            g.FillRectangle(Brushes.Red, x + cellSize / 8, y + cellSize / 8, cellSize - cellSize / 4, cellSize - cellSize / 4);
+                            g.FillRectangle(endBrush, x + cellSize / 8, y + cellSize / 8, cellSize - cellSize / 4, cellSize - cellSize / 4);
 
 
                         // Draw top wall
@@ -154,10 +153,8 @@ namespace MazeGenerator
             return bmp;
         }
 
-        private void CHPathShown_CheckedChanged(object sender, EventArgs e)
+        private void ReloadMaze()
         {
-            pathShown = CHPathShown.Checked;
-
             if (maze != null)
             {
                 if (PBMaze.Image != null)
@@ -171,9 +168,16 @@ namespace MazeGenerator
             }
         }
 
+        private void CHPathShown_CheckedChanged(object sender, EventArgs e)
+        {
+            pathShown = CHPathShown.Checked;
+            ReloadMaze();
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             advancedForm.ShowDialog();
+            ReloadMaze();
         }
     }
 }
