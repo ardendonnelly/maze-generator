@@ -9,6 +9,7 @@ Currently Includes:
 - Depth First Search Solving Algorithm
 - Generation Algorithm Dropdown Menu
 - Advanced Options Menu
+- Colour Control Options
 
 Planned Features:
 - Maze Size Presets
