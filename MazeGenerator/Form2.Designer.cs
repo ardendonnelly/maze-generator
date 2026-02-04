@@ -47,6 +47,7 @@
             BTResetToDefault = new Button();
             BTExit = new Button();
             LBLChangesSaved = new Label();
+            CHMaintainAspectRatio = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)NUDWidth).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NUDHeight).BeginInit();
             SuspendLayout();
@@ -268,12 +269,27 @@
             LBLChangesSaved.Text = "⚠ You have unsaved changes!";
             LBLChangesSaved.Visible = false;
             // 
+            // CHMaintainAspectRatio
+            // 
+            CHMaintainAspectRatio.AutoSize = true;
+            CHMaintainAspectRatio.BackColor = Color.Transparent;
+            CHMaintainAspectRatio.Font = new Font("Courier New", 15.75F);
+            CHMaintainAspectRatio.Location = new Point(31, 257);
+            CHMaintainAspectRatio.Margin = new Padding(5, 4, 5, 4);
+            CHMaintainAspectRatio.Name = "CHMaintainAspectRatio";
+            CHMaintainAspectRatio.Size = new Size(302, 27);
+            CHMaintainAspectRatio.TabIndex = 21;
+            CHMaintainAspectRatio.Text = "Maintain aspect ratio";
+            CHMaintainAspectRatio.UseVisualStyleBackColor = false;
+            CHMaintainAspectRatio.CheckedChanged += CHMaintainAspectRatio_CheckedChanged;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(800, 450);
+            Controls.Add(CHMaintainAspectRatio);
             Controls.Add(LBLChangesSaved);
             Controls.Add(BTExit);
             Controls.Add(BTResetToDefault);
@@ -324,5 +340,6 @@
         private Button BTResetToDefault;
         private Button BTExit;
         private Label LBLChangesSaved;
+        private CheckBox CHMaintainAspectRatio;
     }
 }

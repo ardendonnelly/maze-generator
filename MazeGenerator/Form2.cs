@@ -3,6 +3,8 @@
     public partial class Form2 : Form
     {
         public bool saved = true;
+        public bool ratioMaintained = false;
+        public double aspectRatio = 1.0;
 
         public int width = 10;
         public int height = 10;
@@ -138,12 +140,20 @@
 
         private void NUDWidth_ValueChanged(object sender, EventArgs e)
         {
+            if (ratioMaintained)
+            {
+                NUDHeight.Value = NUDWidth.Value / (decimal)aspectRatio;
+            }
             LBLChangesSaved.Visible = true;
             saved = false;
         }
 
         private void NUDHeight_ValueChanged(object sender, EventArgs e)
         {
+            if (ratioMaintained)
+            {
+                NUDWidth.Value = NUDHeight.Value * (decimal)aspectRatio;
+            }
             LBLChangesSaved.Visible = true;
             saved = false;
         }
@@ -152,6 +162,12 @@
         {
             LBLChangesSaved.Visible = true;
             saved = false;
+        }
+
+        private void CHMaintainAspectRatio_CheckedChanged(object sender, EventArgs e)
+        {
+            ratioMaintained = CHMaintainAspectRatio.Checked;
+            aspectRatio = (double)NUDWidth.Value / (double)NUDHeight.Value;
         }
     }
 }
