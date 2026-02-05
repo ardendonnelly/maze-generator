@@ -108,7 +108,7 @@
             BTExportAsPNG.Name = "BTExportAsPNG";
             BTExportAsPNG.Size = new Size(316, 41);
             BTExportAsPNG.TabIndex = 5;
-            BTExportAsPNG.Text = "Export as .png";
+            BTExportAsPNG.Text = "Export Maze";
             BTExportAsPNG.UseVisualStyleBackColor = true;
             BTExportAsPNG.Click += BTExportAsPNG_Click;
             // 

@@ -184,7 +184,17 @@ namespace MazeGenerator
 
         private void BTExportAsPNG_Click(object sender, EventArgs e)
         {
-            //Drawmaze(maze, cellSize, pathShown).Save(@"C:\Users\johndoe\test.png", ImageFormat.Png);
+            var fileSelect = new SaveFileDialog();
+            fileSelect.Title = "Save Image File";
+            fileSelect.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            fileSelect.Filter = "PNG Image|*.png|JPEG Image|*.jpg|Bitmap Image|*.bmp|All Files|*.*";
+            fileSelect.FilterIndex = 0;
+            fileSelect.FileName = Convert.ToString(DateTime.Now.ToString("yyyy-MM-dd") + "-" + CBGenerationAlg.SelectedItem);
+
+            if (fileSelect.ShowDialog() == DialogResult.OK)
+            {
+                DrawMaze(maze, cellSize, pathShown).Save(fileSelect.FileName, ImageFormat.Png);
+            }
         }
     }
 }
