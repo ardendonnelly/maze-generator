@@ -129,6 +129,7 @@
 
         private void BTResetToDefault_Click(object sender, EventArgs e)
         {
+            CBAdvGenerationAlg.SelectedIndex = 0;
             BTWallColour.BackColor = Color.Black;
             BTPathColour.BackColor = Color.LightBlue;
             BTBackgroundColour.BackColor = Color.WhiteSmoke;
@@ -142,9 +143,10 @@
 
         private void NUDWidth_ValueChanged(object sender, EventArgs e)
         {
-            if (ratioMaintained)
+            decimal widthRatio = NUDWidth.Value / (decimal)aspectRatio;
+            if (ratioMaintained && (widthRatio >= 1) && (widthRatio <= 20))
             {
-                NUDHeight.Value = NUDWidth.Value / (decimal)aspectRatio;
+                NUDHeight.Value = widthRatio;
             }
             LBLChangesSaved.Visible = true;
             saved = false;
@@ -152,9 +154,10 @@
 
         private void NUDHeight_ValueChanged(object sender, EventArgs e)
         {
-            if (ratioMaintained)
+            decimal heightRatio = NUDHeight.Value * (decimal)aspectRatio;
+            if (ratioMaintained && (heightRatio >= 1) && (heightRatio <= 20))
             {
-                NUDWidth.Value = NUDHeight.Value * (decimal)aspectRatio;
+                NUDWidth.Value = heightRatio;
             }
             LBLChangesSaved.Visible = true;
             saved = false;
