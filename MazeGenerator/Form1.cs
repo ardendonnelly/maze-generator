@@ -1,3 +1,5 @@
+using System.Drawing.Imaging;
+
 namespace MazeGenerator
 {
     public partial class Form1 : Form
@@ -178,6 +180,11 @@ namespace MazeGenerator
         {
             advancedForm.ShowDialog();
             ReloadMaze();
+        }
+
+        private void BTExportAsPNG_Click(object sender, EventArgs e)
+        {
+            //Drawmaze(maze, cellSize, pathShown).Save(@"C:\Users\johndoe\test.png", ImageFormat.Png);
         }
     }
 }

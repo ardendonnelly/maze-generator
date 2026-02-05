@@ -135,6 +135,8 @@
             BTStartColour.BackColor = Color.LimeGreen;
             BTEndColour.BackColor = Color.Red;
             LBLChangesSaved.Visible = true;
+            NUDHeight.Value = 10;
+            NUDWidth.Value = 10;
             saved = false;
         }
 

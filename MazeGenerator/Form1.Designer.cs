@@ -33,6 +33,7 @@
             CHPathShown = new CheckBox();
             button1 = new Button();
             BTAdvancedOptions = new Button();
+            BTExportAsPNG = new Button();
             ((System.ComponentModel.ISupportInitialize)PBMaze).BeginInit();
             SuspendLayout();
             // 
@@ -99,12 +100,25 @@
             BTAdvancedOptions.UseVisualStyleBackColor = true;
             BTAdvancedOptions.Click += button2_Click;
             // 
+            // BTExportAsPNG
+            // 
+            BTExportAsPNG.Font = new Font("Courier New", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BTExportAsPNG.Location = new Point(922, 598);
+            BTExportAsPNG.Margin = new Padding(5, 4, 5, 4);
+            BTExportAsPNG.Name = "BTExportAsPNG";
+            BTExportAsPNG.Size = new Size(316, 41);
+            BTExportAsPNG.TabIndex = 5;
+            BTExportAsPNG.Text = "Export as .png";
+            BTExportAsPNG.UseVisualStyleBackColor = true;
+            BTExportAsPNG.Click += BTExportAsPNG_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(11F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1264, 681);
+            Controls.Add(BTExportAsPNG);
             Controls.Add(BTAdvancedOptions);
             Controls.Add(button1);
             Controls.Add(CHPathShown);
@@ -127,5 +141,6 @@
         private CheckBox CHPathShown;
         private Button button1;
         private Button BTAdvancedOptions;
+        private Button BTExportAsPNG;
     }
 }

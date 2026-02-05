@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             CBAdvGenerationAlg = new ComboBox();
             NUDWidth = new NumericUpDown();
             NUDHeight = new NumericUpDown();
@@ -48,6 +49,7 @@
             BTExit = new Button();
             LBLChangesSaved = new Label();
             CHMaintainAspectRatio = new CheckBox();
+            TTAspectRatio = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)NUDWidth).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NUDHeight).BeginInit();
             SuspendLayout();
@@ -274,12 +276,12 @@
             CHMaintainAspectRatio.AutoSize = true;
             CHMaintainAspectRatio.BackColor = Color.Transparent;
             CHMaintainAspectRatio.Font = new Font("Courier New", 15.75F);
-            CHMaintainAspectRatio.Location = new Point(31, 257);
+            CHMaintainAspectRatio.Location = new Point(370, 183);
             CHMaintainAspectRatio.Margin = new Padding(5, 4, 5, 4);
             CHMaintainAspectRatio.Name = "CHMaintainAspectRatio";
-            CHMaintainAspectRatio.Size = new Size(302, 27);
+            CHMaintainAspectRatio.Size = new Size(15, 14);
             CHMaintainAspectRatio.TabIndex = 21;
-            CHMaintainAspectRatio.Text = "Maintain aspect ratio";
+            TTAspectRatio.SetToolTip(CHMaintainAspectRatio, "Maintain aspect ratio");
             CHMaintainAspectRatio.UseVisualStyleBackColor = false;
             CHMaintainAspectRatio.CheckedChanged += CHMaintainAspectRatio_CheckedChanged;
             // 
@@ -341,5 +343,6 @@
         private Button BTExit;
         private Label LBLChangesSaved;
         private CheckBox CHMaintainAspectRatio;
+        private ToolTip TTAspectRatio;
     }
 }
