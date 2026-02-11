@@ -4,7 +4,6 @@
     {
         public bool saved = true;
         public bool ratioMaintained = false;
-        public double aspectRatio = 1.0;
 
         public int width = 10;
         public int height = 10;
@@ -143,22 +142,14 @@
 
         private void NUDWidth_ValueChanged(object sender, EventArgs e)
         {
-            decimal widthRatio = NUDWidth.Value / (decimal)aspectRatio;
-            if (ratioMaintained && (widthRatio >= 1) && (widthRatio <= 20))
-            {
-                NUDHeight.Value = widthRatio;
-            }
+            if (ratioMaintained)
+                NUDHeight.Value = NUDWidth.Value;
             LBLChangesSaved.Visible = true;
             saved = false;
         }
 
         private void NUDHeight_ValueChanged(object sender, EventArgs e)
         {
-            decimal heightRatio = NUDHeight.Value * (decimal)aspectRatio;
-            if (ratioMaintained && (heightRatio >= 1) && (heightRatio <= 20))
-            {
-                NUDWidth.Value = heightRatio;
-            }
             LBLChangesSaved.Visible = true;
             saved = false;
         }
@@ -171,8 +162,20 @@
 
         private void CHMaintainAspectRatio_CheckedChanged(object sender, EventArgs e)
         {
+            if (CHMaintainAspectRatio.Checked)
+            {
+                CHMaintainAspectRatio.ImageIndex = 1;
+                NUDHeight.Enabled = false;
+                NUDHeight.Value = NUDWidth.Value;
+            }
+            else
+            {
+                CHMaintainAspectRatio.ImageIndex = 0;
+                NUDHeight.Enabled = true;
+            }
+
             ratioMaintained = CHMaintainAspectRatio.Checked;
-            aspectRatio = (double)NUDWidth.Value / (double)NUDHeight.Value;
+            NUDHeight.Value = NUDWidth.Value;
         }
     }
 }

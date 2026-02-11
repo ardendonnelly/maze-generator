@@ -121,4 +121,10 @@
   <data name="AnimatedGIFLoop010" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AnimatedGIFLoop010.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="link-2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\link-2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="link-2-off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\link-2-off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

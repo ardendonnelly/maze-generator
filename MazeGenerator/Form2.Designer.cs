@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             CBAdvGenerationAlg = new ComboBox();
             NUDWidth = new NumericUpDown();
             NUDHeight = new NumericUpDown();
@@ -49,6 +50,7 @@
             BTExit = new Button();
             LBLChangesSaved = new Label();
             CHMaintainAspectRatio = new CheckBox();
+            ILAspectRatio = new ImageList(components);
             TTAspectRatio = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)NUDWidth).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NUDHeight).BeginInit();
@@ -84,7 +86,7 @@
             // NUDHeight
             // 
             NUDHeight.Font = new Font("Courier New", 15.75F);
-            NUDHeight.Location = new Point(227, 204);
+            NUDHeight.Location = new Point(227, 242);
             NUDHeight.Maximum = new decimal(new int[] { 20, 0, 0, 0 });
             NUDHeight.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             NUDHeight.Name = "NUDHeight";
@@ -108,7 +110,7 @@
             // 
             Height.AutoSize = true;
             Height.Font = new Font("Courier New", 15.75F);
-            Height.Location = new Point(31, 206);
+            Height.Location = new Point(31, 244);
             Height.Name = "Height";
             Height.Size = new Size(88, 23);
             Height.TabIndex = 6;
@@ -273,17 +275,36 @@
             // 
             // CHMaintainAspectRatio
             // 
+            CHMaintainAspectRatio.Appearance = Appearance.Button;
             CHMaintainAspectRatio.AutoSize = true;
             CHMaintainAspectRatio.BackColor = Color.Transparent;
-            CHMaintainAspectRatio.Font = new Font("Courier New", 15.75F);
-            CHMaintainAspectRatio.Location = new Point(370, 183);
+            CHMaintainAspectRatio.FlatAppearance.BorderColor = SystemColors.Control;
+            CHMaintainAspectRatio.FlatAppearance.BorderSize = 0;
+            CHMaintainAspectRatio.FlatAppearance.CheckedBackColor = SystemColors.Control;
+            CHMaintainAspectRatio.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+            CHMaintainAspectRatio.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+            CHMaintainAspectRatio.Font = new Font("Courier New", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            CHMaintainAspectRatio.ForeColor = Color.Transparent;
+            CHMaintainAspectRatio.ImageIndex = 0;
+            CHMaintainAspectRatio.ImageList = ILAspectRatio;
+            CHMaintainAspectRatio.Location = new Point(264, 195);
             CHMaintainAspectRatio.Margin = new Padding(5, 4, 5, 4);
+            CHMaintainAspectRatio.MaximumSize = new Size(32, 32);
+            CHMaintainAspectRatio.MinimumSize = new Size(32, 32);
             CHMaintainAspectRatio.Name = "CHMaintainAspectRatio";
-            CHMaintainAspectRatio.Size = new Size(15, 14);
+            CHMaintainAspectRatio.Size = new Size(32, 32);
             CHMaintainAspectRatio.TabIndex = 21;
-            TTAspectRatio.SetToolTip(CHMaintainAspectRatio, "Maintain aspect ratio");
+            TTAspectRatio.SetToolTip(CHMaintainAspectRatio, "Maintain square aspect ratio");
             CHMaintainAspectRatio.UseVisualStyleBackColor = false;
             CHMaintainAspectRatio.CheckedChanged += CHMaintainAspectRatio_CheckedChanged;
+            // 
+            // ILAspectRatio
+            // 
+            ILAspectRatio.ColorDepth = ColorDepth.Depth32Bit;
+            ILAspectRatio.ImageStream = (ImageListStreamer)resources.GetObject("ILAspectRatio.ImageStream");
+            ILAspectRatio.TransparentColor = Color.Transparent;
+            ILAspectRatio.Images.SetKeyName(0, "link-2-off.png");
+            ILAspectRatio.Images.SetKeyName(1, "link-2.png");
             // 
             // Form2
             // 
@@ -344,5 +365,6 @@
         private Label LBLChangesSaved;
         private CheckBox CHMaintainAspectRatio;
         private ToolTip TTAspectRatio;
+        private ImageList ILAspectRatio;
     }
 }
