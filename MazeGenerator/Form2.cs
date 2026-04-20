@@ -10,7 +10,7 @@
         public string generationAlgorithm = "Binary Tree";
 
         public Color wallColour = Color.Black;
-        public Color pathColour = Color.LightBlue;
+        public Color pathColour = Color.DarkOrange;
         public Color backgroundColour = Color.WhiteSmoke;
         public Color startColour = Color.LimeGreen;
         public Color endColour = Color.Red;
@@ -130,7 +130,7 @@
         {
             CBAdvGenerationAlg.SelectedIndex = 0;
             BTWallColour.BackColor = Color.Black;
-            BTPathColour.BackColor = Color.LightBlue;
+            BTPathColour.BackColor = Color.DarkOrange;
             BTBackgroundColour.BackColor = Color.WhiteSmoke;
             BTStartColour.BackColor = Color.LimeGreen;
             BTEndColour.BackColor = Color.Red;

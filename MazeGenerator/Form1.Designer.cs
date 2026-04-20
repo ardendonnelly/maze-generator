@@ -34,6 +34,7 @@
             button1 = new Button();
             BTAdvancedOptions = new Button();
             BTExportAsPNG = new Button();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)PBMaze).BeginInit();
             SuspendLayout();
             // 
@@ -55,7 +56,7 @@
             CBGenerationAlg.Font = new Font("Courier New", 15.75F);
             CBGenerationAlg.FormattingEnabled = true;
             CBGenerationAlg.Items.AddRange(new object[] { "Easy", "Medium", "Hard", "Custom" });
-            CBGenerationAlg.Location = new Point(922, 88);
+            CBGenerationAlg.Location = new Point(922, 106);
             CBGenerationAlg.Margin = new Padding(5, 4, 5, 4);
             CBGenerationAlg.Name = "CBGenerationAlg";
             CBGenerationAlg.Size = new Size(316, 31);
@@ -91,7 +92,7 @@
             // BTAdvancedOptions
             // 
             BTAdvancedOptions.Font = new Font("Courier New", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BTAdvancedOptions.Location = new Point(922, 225);
+            BTAdvancedOptions.Location = new Point(922, 243);
             BTAdvancedOptions.Margin = new Padding(5, 4, 5, 4);
             BTAdvancedOptions.Name = "BTAdvancedOptions";
             BTAdvancedOptions.Size = new Size(316, 41);
@@ -112,12 +113,23 @@
             BTExportAsPNG.UseVisualStyleBackColor = true;
             BTExportAsPNG.Click += BTExportAsPNG_Click;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Courier New", 15.75F);
+            label7.Location = new Point(922, 79);
+            label7.Name = "label7";
+            label7.Size = new Size(205, 23);
+            label7.TabIndex = 23;
+            label7.Text = "Maze Difficulty";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(11F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1264, 681);
+            Controls.Add(label7);
             Controls.Add(BTExportAsPNG);
             Controls.Add(BTAdvancedOptions);
             Controls.Add(button1);
@@ -142,5 +154,6 @@
         private Button button1;
         private Button BTAdvancedOptions;
         private Button BTExportAsPNG;
+        private Label label7;
     }
 }

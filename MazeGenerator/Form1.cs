@@ -22,7 +22,7 @@ namespace MazeGenerator
             string advancedAlg = advancedForm.generationAlgorithm;
 
             if (CBGenerationAlg.SelectedItem == null)
-                CBGenerationAlg.SelectedIndex = 0;
+                CBGenerationAlg.SelectedIndex = 1;
 
             object selectedItem = CBGenerationAlg.SelectedItem;
 

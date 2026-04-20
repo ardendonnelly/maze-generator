@@ -52,6 +52,7 @@
             CHMaintainAspectRatio = new CheckBox();
             ILAspectRatio = new ImageList(components);
             TTAspectRatio = new ToolTip(components);
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)NUDWidth).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NUDHeight).BeginInit();
             SuspendLayout();
@@ -63,7 +64,7 @@
             CBAdvGenerationAlg.Font = new Font("Courier New", 15.75F);
             CBAdvGenerationAlg.FormattingEnabled = true;
             CBAdvGenerationAlg.Items.AddRange(new object[] { "Binary Tree", "Iterative Backtracker", "Randomized Kruskal's" });
-            CBAdvGenerationAlg.Location = new Point(31, 36);
+            CBAdvGenerationAlg.Location = new Point(31, 74);
             CBAdvGenerationAlg.Margin = new Padding(5, 4, 5, 4);
             CBAdvGenerationAlg.Name = "CBAdvGenerationAlg";
             CBAdvGenerationAlg.Size = new Size(316, 31);
@@ -73,7 +74,7 @@
             // NUDWidth
             // 
             NUDWidth.Font = new Font("Courier New", 15.75F);
-            NUDWidth.Location = new Point(227, 150);
+            NUDWidth.Location = new Point(227, 160);
             NUDWidth.Maximum = new decimal(new int[] { 20, 0, 0, 0 });
             NUDWidth.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             NUDWidth.Name = "NUDWidth";
@@ -100,7 +101,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Courier New", 15.75F);
-            label1.Location = new Point(31, 152);
+            label1.Location = new Point(31, 162);
             label1.Name = "label1";
             label1.Size = new Size(75, 23);
             label1.TabIndex = 5;
@@ -152,7 +153,7 @@
             // 
             // BTPathColour
             // 
-            BTPathColour.BackColor = Color.LightBlue;
+            BTPathColour.BackColor = Color.DarkOrange;
             BTPathColour.Font = new Font("Courier New", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             BTPathColour.Location = new Point(674, 85);
             BTPathColour.Margin = new Padding(5, 4, 5, 4);
@@ -287,7 +288,7 @@
             CHMaintainAspectRatio.ForeColor = Color.Transparent;
             CHMaintainAspectRatio.ImageIndex = 0;
             CHMaintainAspectRatio.ImageList = ILAspectRatio;
-            CHMaintainAspectRatio.Location = new Point(264, 195);
+            CHMaintainAspectRatio.Location = new Point(265, 199);
             CHMaintainAspectRatio.Margin = new Padding(5, 4, 5, 4);
             CHMaintainAspectRatio.MaximumSize = new Size(32, 32);
             CHMaintainAspectRatio.MinimumSize = new Size(32, 32);
@@ -306,12 +307,23 @@
             ILAspectRatio.Images.SetKeyName(0, "link-2-off.png");
             ILAspectRatio.Images.SetKeyName(1, "link-2.png");
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Courier New", 15.75F);
+            label7.Location = new Point(28, 36);
+            label7.Name = "label7";
+            label7.Size = new Size(270, 23);
+            label7.TabIndex = 22;
+            label7.Text = "Generation Algorithm";
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(800, 450);
+            Controls.Add(label7);
             Controls.Add(CHMaintainAspectRatio);
             Controls.Add(LBLChangesSaved);
             Controls.Add(BTExit);
@@ -334,7 +346,7 @@
             Controls.Add(CBAdvGenerationAlg);
             Name = "Form2";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Advanced Options";
+            Text = "Custom Options";
             Load += Form2_Load;
             ((System.ComponentModel.ISupportInitialize)NUDWidth).EndInit();
             ((System.ComponentModel.ISupportInitialize)NUDHeight).EndInit();
@@ -366,5 +378,6 @@
         private CheckBox CHMaintainAspectRatio;
         private ToolTip TTAspectRatio;
         private ImageList ILAspectRatio;
+        private Label label7;
     }
 }
