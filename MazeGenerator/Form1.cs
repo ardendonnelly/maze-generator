@@ -91,12 +91,6 @@ namespace MazeGenerator
                 SolidBrush startBrush = new SolidBrush(advancedForm.startColour);
                 SolidBrush endBrush = new SolidBrush(advancedForm.endColour);
 
-                Font font = new Font("Arial", 8);
-                StringFormat format = new StringFormat
-                {
-                    Alignment = StringAlignment.Center,
-                    LineAlignment = StringAlignment.Center
-                };
 
                 for (int row = 0; row < maze.Rows; row++)
                 {

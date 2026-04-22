@@ -5,7 +5,7 @@
         // properties
         public int Row { get; set; }
         public int Col { get; set; }
-        public MazeCell Up { get; set; } // UP is a pointer to the MazeCell above
+        public MazeCell Up { get; set; } // Up is a pointer to the MazeCell above
         public MazeCell Down { get; set; }
         public MazeCell Left { get; set; }
         public MazeCell Right { get; set; }
